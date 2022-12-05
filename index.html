@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="Title" onchange="GetTitle(this)">
+<input type="text" placeholder="Subtitle" onchange="GetSubtitle(this)">
+<button onclick="Add(this)">Post it</button>
+
+
+<h1>Remove post by id</h1>
+<input type="text" placeholder="Post id">
+<button onclick="remove(this)">Remove</button>
+
+<h1>Comment post by id</h1>
+<input type="text" placeholder="id">
+<input type="text" placeholder="Your comment">
+<button>Comment</button>
+</body>
+<script>
+    let posts =[{
+        id: 1,
+        title:"pflmkgrton",
+        subtitle:"osidgtrnuobn",
+        comment:[{
+            commentId:1,
+            commentText: "pdocfivgmn"
+        }]
+    },
+    {
+        id: 2,
+        title:"pflmkgrton",
+        subtitle:"osidgtrnuobn",
+        comment:[{
+            commentId:1,
+            commentText: "pdocfivgmn"
+        }]
+    },
+    {
+        id: 3,
+        title:"pflmkgrton",
+        subtitle:"osidgtrnuobn",
+        comment:[{
+            commentId:1,
+            commentText: "pdocfivgmn"
+        }]
+    }]     
+    function RandomNumberGenerator(min, max) {
+        return Math.round(Math.random() * (max - min)) + min;
+    }
+    let postTitle = "";   
+    let postSubtitle = "";   
+    let postComment = "";   
+    
+    function AddPost(title, subtitle) {
+        var ids = RandomNumberGenerator(4,8);
+        posts.every(function Checks(ids) {
+            if(posts.id === ids){
+                ids = RandomNumberGenerator(4,8);
+            }
+        })
+        const post = {
+            id: posts[posts.length - 1].id + 1,
+            title: title,
+            subtitle: subtitle,
+     
+        };
+        posts.push(post);
+        return `User: ${post.title} ${post.subtitle}`;
+    }
+    
+    function GetTitle(element){
+        postTitle = element.value;
+    }
+    function GetSubtitle(element){
+        postSubtitle = element.value;
+    }
+
+    function Add(){
+        AddPost(postTitle,postSubtitle);
+        console.log(`Title: ${postTitle} \nSubtitle: ${postSubtitle}`);
+    }
+
+
+function remove(ele) {
+    const elem = document.getElementById(posts.id);
+  ele.remove();
+}
+</script>
+</html>
