@@ -13,13 +13,13 @@
 
 
 <h1>Remove post by id</h1>
-<input type="text" placeholder="Post id">
+<input type="text" placeholder="Post id" onchange="GetId(this)">
 <button onclick="remove(this)">Remove</button>
 
 <h1>Comment post by id</h1>
-<input type="text" placeholder="id">
-<input type="text" placeholder="Your comment">
-<button>Comment</button>
+<input type="text" placeholder="id" onchange="GetId(this)">
+<input type="text" placeholder="Your comment" onchange="GetCommentId(this)">
+<button onclick="AddComment(this)">Add Comment</button>
 </body>
 <script>
     let posts =[{
@@ -55,6 +55,8 @@
     let postTitle = "";   
     let postSubtitle = "";   
     let postComment = "";   
+    let postId = "";
+    let postCommentId = "";
     
     function AddPost(title, subtitle) {
         var ids = RandomNumberGenerator(4,8);
@@ -70,8 +72,10 @@
      
         };
         posts.push(post);
-        return `User: ${post.title} ${post.subtitle}`;
+        return `Post: ${post.title} ${post.subtitle}`;
     }
+
+
     
     function GetTitle(element){
         postTitle = element.value;
@@ -79,16 +83,41 @@
     function GetSubtitle(element){
         postSubtitle = element.value;
     }
+    function GetId(element){
+        postId = element.value;
+    }
+    function GetCommentId(element){
+        postCommentId = element.value;
+    }
 
     function Add(){
         AddPost(postTitle,postSubtitle);
-        console.log(`Title: ${postTitle} \nSubtitle: ${postSubtitle}`);
+       
     }
 
 
-function remove(ele) {
-    const elem = document.getElementById(posts.id);
-  ele.remove();
+function remove() {
+    for (var i = 0; i < posts.length; i++) {
+    var obj = posts[i];
+
+    if (postId.indexOf(obj.id) !== -1) {
+        posts.splice(i, 1);
+    }
+}
+}
+function AddComment() {
+    for (var i = 0; i < posts.length; i++) {
+    var obj = posts[i];
+
+    if (postId.indexOf(obj.id) == 1) {
+        for (var i = 0; i < posts.length; i++) {
+    var obj = postCommentId++;
+
+
+}
+        posts.push(postCommentId);
+    }
+}
 }
 </script>
 </html>
